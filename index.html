@@ -1,0 +1,160 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>高村輝美 — 日本画 | Terumi Takamura</title>
+<meta name="description" content="日本画家・高村輝美のポートフォリオ。岩絵具と金泥による心象画の世界。">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Shippori+Mincho:wght@400;500;600&family=Zen+Kaku+Gothic+New:wght@300;400;500&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="assets/style.css">
+</head>
+<body>
+
+<header id="hd">
+  <div class="brand"><a href="#top">TERUMI TAKAMURA<small>Portfolio</small></a></div>
+  <nav id="nav">
+    <a href="#works">WORKS</a>
+    <a href="#profile">PROFILE</a>
+    <a href="#contact">CONTACT</a>
+  </nav>
+  <button id="menu-btn" class="menu-btn" aria-label="メニューを開く" aria-expanded="false" aria-controls="nav">
+    <span></span><span></span><span></span>
+  </button>
+</header>
+
+<section class="hero" id="top">
+  <img id="hero-img" alt="風の童子・雷の童子">
+  <div class="hero-title" id="hero-title"></div>
+  <div class="scroll-hint">SCROLL</div>
+</section>
+
+<section class="statement reveal" id="statement">
+  <h2 class="label">制作によせて</h2>
+  <div id="stmt-lead"></div>
+  <div id="stmt-more"></div>
+  <button class="more-btn" id="more-btn">全文を読む</button>
+</section>
+
+<hr class="sep">
+
+<section class="works" id="works">
+  <h2 class="label reveal">WORKS</h2>
+  <div class="grid" id="grid"></div>
+  <div class="all-works reveal">
+    <a href="works.html">ALL WORKS — 全作品を見る（<span id="all-count">25</span>点）</a>
+  </div>
+</section>
+
+<hr class="sep">
+
+<section class="profile reveal" id="profile">
+  <h2 class="label">PROFILE</h2>
+  <div class="profile-inner">
+    <figure class="portrait-photo">
+      <img src="assets/portrait.jpg" alt="アトリエで「風の童子・雷の童子」を制作中の高村輝美" width="1215" height="911">
+      <figcaption>制作風景</figcaption>
+    </figure>
+    <div class="bio">
+      <div class="name">高村 輝美</div>
+      <div class="romaji">TERUMI TAKAMURA</div>
+      <p class="bio-lead">日本画（水干絵具・岩絵具・金泥による心象画）。<br>福島県いわき市生まれ、東京都清瀬市在住。</p>
+      <dl>
+        <dt>1959</dt><dd>福島県いわき市に生まれる</dd>
+        <dt>1982</dt><dd>東京造形大学 デザイン学科 テキスタイルデザイン専攻 卒業</dd>
+        <dt>1982–2021</dt><dd>福島県・東京都の公立中学校 美術科教諭として勤務（2021年定年退職、以後2025年まで時間講師）</dd>
+        <dt>1993–96</dt><dd>渡米（ワシントン州シアトル市）し、州立ベルビューカレッジ（旧ベルビューコミュニティカレッジＢＣＣ）で水彩画を学ぶ</dd>
+        <dt>2017</dt><dd>臨床美術士（クリニカルアーティスト）3級 取得</dd>
+        <dt>2022</dt><dd>藝術学舎の一般公開講座で日本画を学ぶ</dd>
+        <dt>2023</dt><dd>第82回日本画院展 新人賞受賞「希望ある未来へ」</dd>
+        <dt>2025</dt><dd>京都芸術大学 通信教育部 美術科 日本画コース 卒業（卒業作品「風の童子・雷の童子」コース奨励賞）</dd>
+        <dt>2026</dt><dd>第85回記念日本画院展 奨励賞受賞「風の童子・雷の童子」</dd>
+        <dt>2026–</dt><dd>京都芸術大学大学院 芸術研究科（通信教育）修士課程 在籍</dd>
+      </dl>
+    </div>
+  </div>
+</section>
+
+<hr class="sep">
+
+<section class="contact reveal" id="contact">
+  <h2 class="label">CONTACT</h2>
+  <p>展示・作品購入・制作のご依頼・取材などについて、<br>下記よりお気軽にお問い合わせください。</p>
+  <a class="mail" href="mailto:terumimeister@gmail.com">MAIL — お問い合わせ</a>
+</section>
+
+<footer>© TERUMI TAKAMURA. All Rights Reserved.</footer>
+
+<dialog id="lb">
+  <div class="lb">
+    <div class="img-area"><img id="lb-img" alt=""></div>
+    <aside>
+      <h3 id="lb-title"></h3>
+      <div class="subtitle" id="lb-sub"></div>
+      <div class="year" id="lb-year"></div>
+      <p id="lb-cap"></p>
+    </aside>
+  </div>
+  <button class="lb-close" id="lb-close">CLOSE ✕</button>
+  <div class="lb-nav">
+    <button id="lb-prev" aria-label="前の作品">←</button>
+    <button id="lb-next" aria-label="次の作品">→</button>
+    <span class="lb-count" id="lb-count"></span>
+  </div>
+</dialog>
+
+<script src="assets/site.js"></script>
+<script>
+fetch('works.json').then(r=>r.json()).then(data=>{
+  const all = data.works;
+  const featured = all.filter(w=>w.featured);
+  const main = all.find(w=>w.id==='main') || all[0];
+
+  // hero
+  const heroImg=document.getElementById('hero-img');
+  heroImg.src = main.file;
+  heroImg.width = main.width;
+  heroImg.height = main.height;
+  document.getElementById('hero-title').innerHTML =
+    `<div class="title-main">${main.title}</div><div class="award">${main.award}<br>${main.size}　${main.materials}</div>`;
+
+  // statement（冒頭2段落＋残りは「全文を読む」）
+  const paras = main.caption.split('\n').filter(t=>t.trim());
+  const lead = document.getElementById('stmt-lead');
+  const more = document.getElementById('stmt-more');
+  paras.slice(0,2).forEach(t=>{const p=document.createElement('p');p.textContent=t;lead.appendChild(p);});
+  paras.slice(2).forEach(t=>{const p=document.createElement('p');p.textContent=t;more.appendChild(p);});
+  const btn=document.getElementById('more-btn');
+  if(paras.length<=2) btn.style.display='none';
+  btn.onclick=()=>{
+    const open = more.classList.toggle('open');
+    btn.textContent = open ? '閉じる' : '全文を読む';
+  };
+
+  // works（トップは厳選のみ。ライトボックスの前後送りも厳選内で循環）
+  const grid=document.getElementById('grid');
+  Site.buildGrid(grid, featured);
+  Site.layoutGrid(grid, featured);
+  Site.autoRelayout([[grid, featured]]);
+  document.getElementById('all-count').textContent = all.length;
+
+  Site.reveal();
+
+  // 現在地ハイライト
+  const secIds=['works','profile','contact'];
+  const navLinks=[...document.querySelectorAll('#nav a')];
+  const secIo=Site.hold(new IntersectionObserver(es=>{
+    es.forEach(e=>{
+      if(e.isIntersecting){
+        navLinks.forEach(a=>a.classList.toggle('active',a.getAttribute('href')==='#'+e.target.id));
+      }
+    });
+  },{rootMargin:'-40% 0px -55% 0px'}));
+  secIds.forEach(id=>secIo.observe(document.getElementById(id)));
+});
+
+Site.initLightbox();
+Site.chrome();
+</script>
+</body>
+</html>

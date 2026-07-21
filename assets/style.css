@@ -1,0 +1,169 @@
+/* ============================================================
+   高村輝美 ポートフォリオ 共通スタイル
+   ルール：余白は必ず8の倍数（--s1〜--s15 のトークンを使う）
+   ============================================================ */
+:root{
+  --bg:#f7f4ee; --ink:#2b2a26; --sub:#6f6a5f; --gold:#a8894a; --line:#e3ddd0;
+  --serif:'Shippori Mincho',serif; --sans:'Zen Kaku Gothic New',sans-serif;
+  /* 8ptスペーシングスケール */
+  --s1:8px; --s2:16px; --s3:24px; --s4:32px; --s5:40px; --s6:48px;
+  --s8:64px; --s10:80px; --s12:96px; --s15:120px;
+}
+*{margin:0;padding:0;box-sizing:border-box}
+html{scroll-behavior:smooth}
+body{background:var(--bg);color:var(--ink);font-family:var(--serif);line-height:1.9;letter-spacing:.06em}
+section{scroll-margin-top:80px}
+img{user-select:none}
+
+/* ===== header ===== */
+header{position:fixed;top:0;left:0;right:0;z-index:20;display:flex;justify-content:space-between;align-items:baseline;padding:var(--s3) var(--s5);transition:background .4s,box-shadow .4s}
+header.scrolled{background:rgba(247,244,238,.92);backdrop-filter:blur(8px);box-shadow:0 1px 0 var(--line)}
+.brand{font-size:1.02rem;letter-spacing:.3em;white-space:nowrap}
+.brand a{color:inherit;text-decoration:none}
+.brand small{display:block;font-family:var(--sans);font-size:.58rem;letter-spacing:.28em;color:var(--sub)}
+nav{display:flex;gap:var(--s3)}
+nav a{font-family:var(--sans);font-size:.8rem;letter-spacing:.22em;color:var(--sub);text-decoration:none;padding-bottom:8px;border-bottom:1px solid transparent;transition:color .3s,border-color .3s}
+nav a:hover{color:var(--gold)}
+nav a.active{color:var(--ink);border-color:var(--gold)}
+
+/* ===== hamburger menu（モバイル） ===== */
+.menu-btn{display:none;background:none;border:0;width:40px;height:40px;padding:0;cursor:pointer;position:relative;z-index:21}
+.menu-btn span{position:absolute;left:6px;right:6px;height:1px;background:var(--ink);transition:transform .35s cubic-bezier(.22,.61,.36,1),opacity .25s}
+.menu-btn span:nth-child(1){top:15px}
+.menu-btn span:nth-child(2){top:20px}
+.menu-btn span:nth-child(3){top:25px}
+.menu-btn.open span:nth-child(1){transform:translateY(5px) rotate(45deg)}
+.menu-btn.open span:nth-child(2){opacity:0}
+.menu-btn.open span:nth-child(3){transform:translateY(-5px) rotate(-45deg)}
+
+/* ===== hero ===== */
+.hero{min-height:100vh;display:grid;grid-template-columns:1fr auto;gap:var(--s6);align-items:center;padding:112px clamp(24px,6vw,80px) var(--s12);position:relative}
+.hero img{width:100%;max-height:68vh;object-fit:contain;box-shadow:0 30px 60px -30px rgba(43,42,38,.35)}
+.hero-title{writing-mode:vertical-rl;height:auto;max-height:68vh;display:flex;flex-direction:column;align-items:flex-start;gap:var(--s4)}
+.hero-title .title-main{font-size:clamp(1.5rem,2.6vw,2.25rem);font-weight:500;letter-spacing:.3em;line-height:1.6}
+.hero-title .award{font-size:.75rem;color:var(--gold);letter-spacing:.3em;line-height:2.2}
+.scroll-hint{position:absolute;bottom:var(--s3);left:50%;transform:translateX(-50%);font-family:var(--sans);font-size:.7rem;letter-spacing:.4em;color:var(--sub)}
+.scroll-hint::after{content:"";display:block;width:1px;height:var(--s6);background:var(--sub);margin:var(--s1) auto 0;animation:drop 2.2s infinite}
+@keyframes drop{0%{transform:scaleY(0);transform-origin:top}45%{transform:scaleY(1);transform-origin:top}55%{transform:scaleY(1);transform-origin:bottom}100%{transform:scaleY(0);transform-origin:bottom}}
+
+/* ===== statement ===== */
+.statement{max-width:680px;margin:0 auto;padding:var(--s15) var(--s3)}
+h2.label{font-family:var(--serif);font-size:1.35rem;color:var(--gold);letter-spacing:.42em;margin-bottom:var(--s6);font-weight:500}
+.statement p{font-size:1rem;color:#454138;text-align:justify;margin-bottom:var(--s3)}
+#stmt-more{display:none}
+#stmt-more.open{display:block}
+.more-btn{display:inline-block;background:none;border:1px solid var(--line);color:var(--sub);font-family:var(--sans);font-size:.75rem;letter-spacing:.3em;padding:var(--s2) var(--s5);cursor:pointer;transition:border-color .3s,color .3s}
+.more-btn:hover{border-color:var(--gold);color:var(--gold)}
+hr.sep{border:0;width:1px;height:var(--s8);background:var(--line);margin:0 auto}
+
+/* ===== works ===== */
+.works{max-width:1280px;margin:0 auto;padding:var(--s12) clamp(24px,5vw,80px)}
+.works h2.label{text-align:center}
+.grid{display:flex;flex-wrap:wrap;gap:var(--s5) var(--s3)}
+.card{cursor:zoom-in;width:100%}
+.card .frame{position:relative;overflow:hidden;background:#efeadf;box-shadow:0 16px 36px -22px rgba(43,42,38,.35)}
+.card img{width:100%;height:auto;display:block;transition:transform .9s cubic-bezier(.22,.61,.36,1)}
+.card:hover img{transform:scale(1.035)}
+/* クリックできることを示す「＋」バッジ */
+.frame::after{content:"＋";position:absolute;right:var(--s2);bottom:var(--s2);width:var(--s4);height:var(--s4);border-radius:50%;background:rgba(247,244,238,.88);color:var(--gold);font-family:var(--sans);font-size:1.05rem;display:flex;align-items:center;justify-content:center;line-height:1;box-shadow:0 2px 8px rgba(43,42,38,.22);transition:background .3s,color .3s,transform .3s}
+.card:hover .frame::after{background:var(--gold);color:#fff;transform:scale(1.1)}
+.card .info{padding:var(--s2) 0 0}
+.card .info h3{font-size:1.05rem;font-weight:500;letter-spacing:.16em}
+.card .info .year{font-family:var(--sans);font-size:.7rem;color:var(--sub);letter-spacing:.2em;margin-top:8px}
+.card .info .spec{font-family:var(--sans);font-size:.7rem;color:var(--sub);letter-spacing:.12em;line-height:1.9;margin-top:8px}
+
+/* ALL WORKS ボタン */
+.all-works{display:flex;justify-content:center;margin-top:var(--s8)}
+.all-works a{display:inline-block;font-family:var(--sans);font-size:.85rem;letter-spacing:.24em;color:var(--ink);text-decoration:none;border:1px solid var(--ink);padding:var(--s2) var(--s6);transition:background .3s,color .3s}
+.all-works a:hover{background:var(--ink);color:var(--bg)}
+
+/* ===== 全作品ページ ===== */
+.page-works{padding-top:144px}
+.works-head{text-align:center;margin-bottom:var(--s4)}
+.works-head h2.label{margin-bottom:var(--s2)}
+.works-head .lead{font-family:var(--sans);font-size:.75rem;letter-spacing:.2em;color:var(--sub)}
+.group{max-width:1280px;margin:0 auto;padding:var(--s6) clamp(24px,5vw,80px) var(--s8)}
+h3.group-label{font-family:var(--serif);font-size:1.1rem;font-weight:500;letter-spacing:.3em;margin-bottom:var(--s5)}
+h3.group-label small{font-family:var(--sans);font-size:.7rem;color:var(--gold);letter-spacing:.24em;margin-left:var(--s2)}
+
+/* ===== lightbox ===== */
+dialog{border:0;background:rgba(24,23,20,.97);width:100vw;height:100vh;max-width:100vw;max-height:100vh;padding:0}
+.lb{display:grid;grid-template-columns:1fr 350px;height:100vh}
+.lb .img-area{display:flex;align-items:center;justify-content:center;padding:5vh 3vw;min-width:0}
+.lb .img-area img{max-width:100%;max-height:88vh;object-fit:contain;box-shadow:0 40px 90px -40px #000}
+.lb aside{background:#221f1b;color:#e9e4d8;padding:var(--s10) var(--s5) var(--s12);overflow-y:auto}
+.lb aside h3{font-size:1.4rem;font-weight:500;letter-spacing:.2em}
+.lb aside .subtitle{font-size:.85rem;color:#bdb7a9;letter-spacing:.14em;margin-top:8px}
+.lb aside .subtitle:empty{display:none}
+.lb aside .year{font-family:var(--sans);font-size:.72rem;color:#c9a45c;letter-spacing:.24em;margin:var(--s2) 0 var(--s4);line-height:2}
+.lb aside p{font-size:.88rem;line-height:2.2;color:#bdb7a9;text-align:justify}
+.lb-close{position:fixed;top:var(--s3);right:var(--s4);background:none;border:0;color:#e9e4d8;font-family:var(--sans);font-size:.75rem;letter-spacing:.3em;cursor:pointer;z-index:2}
+.lb-close:hover{color:#c9a45c}
+.lb-nav{position:fixed;bottom:var(--s3);left:var(--s4);display:flex;gap:var(--s2);align-items:center}
+.lb-nav button{background:none;border:1px solid #4a463e;color:#e9e4d8;width:var(--s6);height:var(--s6);border-radius:50%;cursor:pointer;font-size:1rem;transition:border-color .3s}
+.lb-nav button:hover{border-color:#c9a45c}
+.lb-count{font-family:var(--sans);font-size:.7rem;letter-spacing:.24em;color:#8d877b}
+
+/* ===== profile ===== */
+.profile{max-width:920px;margin:0 auto;padding:var(--s12) var(--s3)}
+.profile h2.label{text-align:center}
+.profile-inner{display:grid;grid-template-columns:1fr;gap:var(--s8)}
+.portrait-photo{margin:0}
+.portrait-photo img{width:100%;height:auto;display:block;box-shadow:0 24px 48px -28px rgba(43,42,38,.35)}
+.portrait-photo figcaption{font-family:var(--sans);font-size:.7rem;letter-spacing:.28em;color:var(--sub);margin-top:var(--s2);text-align:right}
+.profile .name{font-size:1.8rem;font-weight:500;letter-spacing:.34em;margin-bottom:8px}
+.profile .romaji{font-family:var(--sans);font-size:.72rem;letter-spacing:.34em;color:var(--sub);margin-bottom:var(--s4)}
+.profile .bio-lead{font-size:.95rem;color:#454138;margin-bottom:var(--s5)}
+.profile dl{display:grid;grid-template-columns:9em 1fr;row-gap:var(--s2);font-size:1rem}
+.profile dt{color:var(--gold);letter-spacing:.2em}
+.profile dd{color:#454138}
+.profile .note{margin-top:var(--s5);font-family:var(--sans);font-size:.75rem;color:var(--sub);letter-spacing:.12em;line-height:2.2}
+
+/* ===== contact ===== */
+.contact{max-width:640px;margin:0 auto;padding:var(--s12) var(--s3) 128px;text-align:center}
+.contact p{font-size:1rem;color:#454138;margin-bottom:var(--s6)}
+.contact .mail{display:inline-block;font-family:var(--sans);font-size:.85rem;letter-spacing:.24em;color:var(--ink);text-decoration:none;border:1px solid var(--ink);padding:var(--s2) var(--s6);transition:background .3s,color .3s}
+.contact .mail:hover{background:var(--ink);color:var(--bg)}
+
+footer{border-top:1px solid var(--line);padding:var(--s6) var(--s5);text-align:center;font-family:var(--sans);font-size:.72rem;letter-spacing:.25em;color:var(--sub)}
+
+/* ===== reveal ===== */
+.reveal{opacity:0;transform:translateY(32px);transition:opacity 1.1s cubic-bezier(.22,.61,.36,1),transform 1.1s cubic-bezier(.22,.61,.36,1)}
+.reveal.on{opacity:1;transform:none}
+
+/* ===== responsive ===== */
+/* モバイルのライトボックス：詳細を消さず、画像の下に縦積みで表示 */
+@media (max-width:860px){
+  dialog{overflow-y:auto}
+  .lb{display:block;height:auto;min-height:100vh}
+  .lb .img-area{padding:72px var(--s2) var(--s2)}
+  .lb .img-area img{max-height:56vh;margin:0 auto;display:block}
+  .lb aside{padding:var(--s4) var(--s3) 136px}
+  .lb-nav button{background:rgba(24,23,20,.78)}
+  .lb-count{background:rgba(24,23,20,.78);padding:var(--s1);border-radius:var(--s3)}
+}
+@media (max-width:760px){
+  .hero{grid-template-columns:1fr;padding-top:96px}
+  .hero-title{writing-mode:horizontal-tb;height:auto;max-height:none}
+  .profile-inner{gap:40px}
+  .profile .name,.profile .romaji{text-align:center}
+  .profile dl{grid-template-columns:1fr;row-gap:.2em}
+  .profile dt{margin-top:1.2em}
+}
+@media (max-width:700px){
+  header{padding:var(--s2) var(--s3);align-items:center}
+  .brand{font-size:.9rem}
+  .brand small{display:none}
+  .menu-btn{display:block}
+  nav#nav{
+    position:fixed;inset:0;
+    display:flex;flex-direction:column;align-items:center;justify-content:center;gap:var(--s6);
+    background:var(--bg);
+    transform:translateY(-100%);opacity:0;visibility:hidden;
+    transition:transform .45s cubic-bezier(.22,.61,.36,1),opacity .35s,visibility 0s .45s;
+  }
+  nav#nav.open{transform:translateY(0);opacity:1;visibility:visible;transition:transform .45s cubic-bezier(.22,.61,.36,1),opacity .35s,visibility 0s}
+  nav#nav a{font-size:1.1rem;letter-spacing:.3em;padding-bottom:0;border-bottom:0}
+  h2.label{font-size:1.15rem}
+  .page-works{padding-top:112px}
+}

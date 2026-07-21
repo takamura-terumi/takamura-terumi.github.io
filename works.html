@@ -1,0 +1,88 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>全作品 | 高村輝美 — 日本画</title>
+<meta name="description" content="日本画家・高村輝美の全作品一覧。日本画から、渡米時代の水彩・テンペラまで。">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Shippori+Mincho:wght@400;500;600&family=Zen+Kaku+Gothic+New:wght@300;400;500&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="assets/style.css">
+</head>
+<body>
+
+<header id="hd">
+  <div class="brand"><a href="index.html">TERUMI TAKAMURA<small>Portfolio</small></a></div>
+  <nav id="nav">
+    <a href="index.html">TOP</a>
+    <a href="index.html#profile">PROFILE</a>
+    <a href="index.html#contact">CONTACT</a>
+  </nav>
+  <button id="menu-btn" class="menu-btn" aria-label="メニューを開く" aria-expanded="false" aria-controls="nav">
+    <span></span><span></span><span></span>
+  </button>
+</header>
+
+<main class="page-works">
+  <div class="works-head reveal">
+    <h2 class="label">ALL WORKS</h2>
+    <div class="lead">全作品 — 制作年の新しい順</div>
+  </div>
+
+  <section class="group">
+    <h3 class="group-label reveal">日本画<small>2022 – 2025</small></h3>
+    <div class="grid" id="grid-nihonga"></div>
+  </section>
+
+  <hr class="sep">
+
+  <section class="group">
+    <h3 class="group-label reveal">水彩・テンペラの時代<small>1994 – 2018</small></h3>
+    <div class="grid" id="grid-early"></div>
+  </section>
+</main>
+
+<footer>© TERUMI TAKAMURA. All Rights Reserved.</footer>
+
+<dialog id="lb">
+  <div class="lb">
+    <div class="img-area"><img id="lb-img" alt=""></div>
+    <aside>
+      <h3 id="lb-title"></h3>
+      <div class="subtitle" id="lb-sub"></div>
+      <div class="year" id="lb-year"></div>
+      <p id="lb-cap"></p>
+    </aside>
+  </div>
+  <button class="lb-close" id="lb-close">CLOSE ✕</button>
+  <div class="lb-nav">
+    <button id="lb-prev" aria-label="前の作品">←</button>
+    <button id="lb-next" aria-label="次の作品">→</button>
+    <span class="lb-count" id="lb-count"></span>
+  </div>
+</dialog>
+
+<script src="assets/site.js"></script>
+<script>
+fetch('works.json').then(r=>r.json()).then(data=>{
+  const all = data.works;
+  const yearOf = w => parseInt(w.year) || 0;
+  const nihonga = all.filter(w=>yearOf(w)>=2021);
+  const early   = all.filter(w=>yearOf(w)<2021);
+
+  const g1=document.getElementById('grid-nihonga');
+  const g2=document.getElementById('grid-early');
+  // ライトボックスの前後送りは全作品を通しで循環
+  Site.buildGrid(g1, nihonga, all);
+  Site.buildGrid(g2, early, all);
+  Site.layoutGrid(g1, nihonga);
+  Site.layoutGrid(g2, early);
+  Site.autoRelayout([[g1, nihonga],[g2, early]]);
+  Site.reveal();
+});
+
+Site.initLightbox();
+Site.chrome();
+</script>
+</body>
+</html>
