@@ -1,0 +1,46 @@
+# https://takamura-terumi.github.io/
+Sitemap: https://takamura-terumi.github.io/sitemap.xml
+
+# --- AI学習用クローラーへの学習利用拒否（意思表示） ---
+User-agent: GPTBot
+Disallow: /
+
+User-agent: Google-Extended
+Disallow: /
+
+User-agent: CCBot
+Disallow: /
+
+User-agent: anthropic-ai
+Disallow: /
+
+User-agent: ClaudeBot
+Disallow: /
+
+User-agent: Bytespider
+Disallow: /
+
+User-agent: meta-externalagent
+Disallow: /
+
+User-agent: FacebookBot
+Disallow: /
+
+User-agent: Applebot-Extended
+Disallow: /
+
+User-agent: PerplexityBot
+Disallow: /
+
+User-agent: Diffbot
+Disallow: /
+
+User-agent: img2dataset
+Disallow: /
+
+User-agent: cohere-ai
+Disallow: /
+
+# --- 通常の検索クローラーは歓迎 ---
+User-agent: *
+Allow: /

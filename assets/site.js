@@ -46,9 +46,16 @@ const Site = (() => {
     });
   }
 
-  /* ---- カード生成。lbList=ライトボックスで前後送りする集合（省略時はlist） ---- */
+  /* ---- カード生成。lbList=ライトボックスで前後送りする集合（省略時はlist）
+         ビルドスクリプト(tools/build_static.py)による事前描画済みカードが
+         ある場合は、生成せずクリックだけを紐付ける ---- */
   function buildGrid(grid, list, lbList){
     const navList = lbList || list;
+    const pre = [...grid.children].filter(el => el.classList.contains('card'));
+    if(pre.length === list.length && pre.length > 0){
+      pre.forEach((el, i) => { el.onclick = () => openLb(navList, navList.indexOf(list[i])); });
+      return;
+    }
     list.forEach((w, i) => {
       const c = document.createElement('div');
       c.className = 'card reveal';

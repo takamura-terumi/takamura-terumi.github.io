@@ -7,6 +7,19 @@
 <meta name="description" content="日本画家・高村輝美のポートフォリオ。岩絵具と金泥による心象画の世界。">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link href="https://fonts.googleapis.com/css2?family=Shippori+Mincho:wght@400;500;600&family=Zen+Kaku+Gothic+New:wght@300;400;500&display=swap" rel="stylesheet">
+<meta name="robots" content="noai, noimageai">
+<link rel="canonical" href="https://takamura-terumi.github.io/">
+<meta property="og:type" content="website">
+<meta property="og:title" content="高村輝美 — 日本画 | Terumi Takamura">
+<meta property="og:description" content="日本画家・高村輝美のポートフォリオ。岩絵具と金泥による心象画の世界。">
+<meta property="og:url" content="https://takamura-terumi.github.io/">
+<meta property="og:image" content="https://takamura-terumi.github.io/assets/og.jpg">
+<meta property="og:image:width" content="1200">
+<meta property="og:image:height" content="630">
+<meta name="twitter:card" content="summary_large_image">
+<!--JSONLD:START-->
+<script type="application/ld+json">{"@context": "https://schema.org", "@type": "Person", "name": "高村 輝美", "alternateName": "Terumi Takamura", "jobTitle": "日本画家", "url": "https://takamura-terumi.github.io/", "image": "https://takamura-terumi.github.io/assets/portrait.jpg", "description": "日本画家。水干絵具・岩絵具・金泥による心象画。"}</script>
+<!--JSONLD:END-->
 <link rel="stylesheet" href="assets/style.css">
 </head>
 <body>
@@ -40,7 +53,16 @@
 
 <section class="works" id="works">
   <h2 class="label reveal">WORKS</h2>
-  <div class="grid" id="grid"></div>
+  <div class="grid" id="grid">
+<!--WORKS:START-->
+<div class="card reveal" style="transition-delay:0.0s"><div class="frame"><img src="assets/works/01_kaze_rai_no_doji.jpg" alt="風の童子・雷の童子" width="1920" height="1388" loading="lazy"></div><div class="info"><h3>風の童子・雷の童子</h3><div class="year">2025年12月制作</div><div class="spec">P50号×2（160.6cm×116.7cm）　高知麻紙、水干、岩絵具、金泥</div></div></div>
+<div class="card reveal" style="transition-delay:0.08s"><div class="frame"><img src="assets/works/12_kaze_akimeku.jpg" alt="風・秋めく" width="1386" height="1786" loading="lazy"></div><div class="info"><h3>風・秋めく</h3><div class="year">2025年11月制作</div><div class="spec">Ｆ６　雲肌麻紙、水干、岩絵具</div></div></div>
+<div class="card reveal" style="transition-delay:0.16s"><div class="frame"><img src="assets/works/08_yoake_no_hikari.jpg" alt="夜明けの光" width="1300" height="838" loading="lazy"></div><div class="info"><h3>夜明けの光</h3><div class="year">2025年7月制作</div><div class="spec">M40号（100.0cm×65.2cm）　高知麻紙、水干、岩絵具</div></div></div>
+<div class="card reveal" style="transition-delay:0.0s"><div class="frame"><img src="assets/works/07_jigazou.jpg" alt="自画像（夢）" width="1300" height="1608" loading="lazy"></div><div class="info"><h3>自画像（夢）</h3><div class="year">2025年2月制作</div><div class="spec">F15号（65.2cm×53.0cm）　雲肌麻紙、水干、岩絵具</div></div></div>
+<div class="card reveal" style="transition-delay:0.08s"><div class="frame"><img src="assets/works/06_usumurasaki_no_kage.jpg" alt="薄紫の影" width="1300" height="1554" loading="lazy"></div><div class="info"><h3>薄紫の影</h3><div class="year">2024年11月制作</div><div class="spec">F20号（72.7cm×60.6cm）　雲肌麻紙、水干、岩絵具</div></div></div>
+<div class="card reveal" style="transition-delay:0.16s"><div class="frame"><img src="assets/works/05_omoi_wo_kaze_ni.jpeg" alt="思いを風に" width="1300" height="846" loading="lazy"></div><div class="info"><h3>思いを風に</h3><div class="year">2024年7月制作</div><div class="spec">P20＋F20 パネル（72.7cm×110.6cm）　雲肌麻紙、水干、岩絵具</div></div></div>
+<!--WORKS:END-->
+</div>
   <div class="all-works reveal">
     <a href="works.html">ALL WORKS — 全作品を見る（<span id="all-count">25</span>点）</a>
   </div>
@@ -80,7 +102,7 @@
 <section class="contact reveal" id="contact">
   <h2 class="label">CONTACT</h2>
   <p>展示・作品購入・制作のご依頼・取材などについて、<br>下記よりお気軽にお問い合わせください。</p>
-  <a class="mail" href="mailto:terumimeister@gmail.com">MAIL — お問い合わせ</a>
+  <a class="mail" id="mail-link" href="#">MAIL — お問い合わせ</a>
 </section>
 
 <footer>© TERUMI TAKAMURA. All Rights Reserved.<span class="copyright-note">掲載作品の著作権はすべて高村輝美に帰属します。無断転載・複製を禁じます。</span></footer>
@@ -155,6 +177,13 @@ fetch('works.json').then(r=>r.json()).then(data=>{
 
 Site.initLightbox();
 Site.chrome();
+
+// メールアドレスは収集ボット対策でJS側で組み立てる
+(()=>{
+  const a = document.getElementById('mail-link');
+  const u = 'terumimeister', d = 'gmail.com';
+  a.href = 'mailto:' + u + String.fromCharCode(64) + d;
+})();
 </script>
 </body>
 </html>
