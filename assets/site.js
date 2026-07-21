@@ -124,6 +124,12 @@ const Site = (() => {
     addEventListener('resize', () => { if(innerWidth > 700) closeMenu(); });
   }
 
+  /* ---- 画像の保存抑止：画像上の右クリックのみ無効化（ページ全体は妨げない）。
+         スクリーンショット等まで防ぐことは原理的に不可能で、あくまで抑止策 ---- */
+  document.addEventListener('contextmenu', e => {
+    if(e.target.tagName === 'IMG') e.preventDefault();
+  });
+
   /* ---- リサイズ時の再組版（ページ側で対象グリッドを登録） ---- */
   function autoRelayout(pairs){
     let t;

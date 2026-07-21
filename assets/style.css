@@ -13,7 +13,10 @@
 html{scroll-behavior:smooth}
 body{background:var(--bg);color:var(--ink);font-family:var(--serif);line-height:1.9;letter-spacing:.06em}
 section{scroll-margin-top:80px}
-img{user-select:none}
+/* 画像の保存抑止：ドラッグ保存・iOS長押し保存を無効化（完全防止ではなく抑止） */
+img{user-select:none;-webkit-user-drag:none;-webkit-touch-callout:none}
+
+footer .copyright-note{display:block;margin-top:var(--s1);font-size:.68rem;letter-spacing:.14em;color:var(--sub)}
 
 /* ===== header ===== */
 header{position:fixed;top:0;left:0;right:0;z-index:20;display:flex;justify-content:space-between;align-items:baseline;padding:var(--s3) var(--s5);transition:background .4s,box-shadow .4s}
