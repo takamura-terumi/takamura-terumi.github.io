@@ -44,6 +44,7 @@ nav a.active{color:var(--ink);border-color:var(--gold)}
 .hero img{width:100%;max-height:68vh;object-fit:contain;box-shadow:0 30px 60px -30px rgba(43,42,38,.35)}
 .hero-title{writing-mode:vertical-rl;height:auto;max-height:68vh;display:flex;flex-direction:column;align-items:flex-start;gap:var(--s4)}
 .hero-title .title-main{font-size:clamp(1.5rem,2.6vw,2.25rem);font-weight:500;letter-spacing:.3em;line-height:1.6}
+.hero-title .title-sub{font-size:clamp(.85rem,1.3vw,1.05rem);letter-spacing:.2em;line-height:1.9;color:#454138}
 .hero-title .award{font-size:.75rem;color:var(--gold);letter-spacing:.3em;line-height:2.2}
 .scroll-hint{position:absolute;bottom:var(--s3);left:50%;transform:translateX(-50%);font-family:var(--sans);font-size:.7rem;letter-spacing:.4em;color:var(--sub)}
 .scroll-hint::after{content:"";display:block;width:1px;height:var(--s6);background:var(--sub);margin:var(--s1) auto 0;animation:drop 2.2s infinite}

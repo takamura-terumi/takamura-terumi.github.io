@@ -40,7 +40,7 @@
 </header>
 
 <section class="hero" id="top">
-  <img id="hero-img" alt="風の童子・雷の童子">
+  <img id="hero-img" alt="風の童子・雷の童子「ふうちゃん　らいちゃん　蒼空に遊ぶ・・・」">
   <div class="hero-title" id="hero-title"></div>
   <div class="scroll-hint">SCROLL</div>
 </section>
@@ -58,7 +58,7 @@
   <h2 class="label reveal">WORKS</h2>
   <div class="grid" id="grid">
 <!--WORKS:START-->
-<div class="card reveal" style="transition-delay:0.0s"><div class="frame"><img src="assets/works/01_kaze_rai_no_doji.jpg" alt="風の童子・雷の童子" width="1920" height="1388" loading="lazy"></div><div class="info"><h3>風の童子・雷の童子</h3><div class="year">2025年12月制作</div><div class="spec">P50号×2（160.6cm×116.7cm）　高知麻紙、水干、岩絵具、金泥</div></div></div>
+<div class="card reveal" style="transition-delay:0.0s"><div class="frame"><img src="assets/works/01_kaze_rai_no_doji.jpg" alt="風の童子・雷の童子「ふうちゃん　らいちゃん　蒼空に遊ぶ・・・」" width="1920" height="1388" loading="lazy"></div><div class="info"><h3>風の童子・雷の童子「ふうちゃん　らいちゃん　蒼空に遊ぶ・・・」</h3><div class="year">2025年12月制作</div><div class="spec">P50号×2（160.6cm×116.7cm）　高知麻紙、水干、岩絵具、金泥</div></div></div>
 <div class="card reveal" style="transition-delay:0.08s"><div class="frame"><img src="assets/works/12_kaze_akimeku.jpg" alt="風・秋めく" width="1386" height="1786" loading="lazy"></div><div class="info"><h3>風・秋めく</h3><div class="year">2025年11月制作</div><div class="spec">Ｆ６　雲肌麻紙、水干、岩絵具</div></div></div>
 <div class="card reveal" style="transition-delay:0.16s"><div class="frame"><img src="assets/works/08_yoake_no_hikari.jpg" alt="夜明けの光" width="1300" height="838" loading="lazy"></div><div class="info"><h3>夜明けの光</h3><div class="year">2025年7月制作</div><div class="spec">M40号（100.0cm×65.2cm）　高知麻紙、水干、岩絵具</div></div></div>
 <div class="card reveal" style="transition-delay:0.0s"><div class="frame"><img src="assets/works/07_jigazou.jpg" alt="自画像（夢）" width="1300" height="1608" loading="lazy"></div><div class="info"><h3>自画像（夢）</h3><div class="year">2025年2月制作</div><div class="spec">F15号（65.2cm×53.0cm）　雲肌麻紙、水干、岩絵具</div></div></div>
@@ -77,7 +77,7 @@
   <h2 class="label">PROFILE</h2>
   <div class="profile-inner">
     <figure class="portrait-photo">
-      <img src="assets/portrait.jpg" alt="アトリエで「風の童子・雷の童子」を制作中の高村輝美" width="1215" height="911">
+      <img src="assets/portrait.jpg" alt="アトリエで卒業作品を制作中の高村輝美" width="1215" height="911">
       <figcaption>制作風景</figcaption>
     </figure>
     <div class="bio">
@@ -93,7 +93,7 @@
         <dt>2022</dt><dd>藝術学舎の一般公開講座で日本画を学ぶ</dd>
         <dt>2023</dt><dd>第82回日本画院展 新人賞受賞「希望ある未来へ」</dd>
         <dt>2025</dt><dd>京都芸術大学 通信教育部 美術科 日本画コース 卒業（卒業作品　風の童子・雷の童子「ふうちゃん　らいちゃん　蒼空に遊ぶ・・・」コース奨励賞）</dd>
-        <dt>2026</dt><dd>第85回記念日本画院展 奨励賞受賞「風の童子・雷の童子」</dd>
+        <dt>2026</dt><dd>第85回記念日本画院展 奨励賞受賞　風の童子・雷の童子「ふうちゃん　らいちゃん　蒼空に遊ぶ・・・」</dd>
         <dt>2026–</dt><dd>京都芸術大学大学院 芸術研究科（通信教育）修士課程 在籍</dd>
       </dl>
     </div>
@@ -140,8 +140,11 @@ fetch('works.json').then(r=>r.json()).then(data=>{
   heroImg.src = main.file;
   heroImg.width = main.width;
   heroImg.height = main.height;
+  const tp = main.title.split('「');
   document.getElementById('hero-title').innerHTML =
-    `<div class="title-main">${main.title}</div><div class="award">${main.award}<br>${main.size}　${main.materials}</div>`;
+    `<div class="title-main">${tp[0]}</div>` +
+    (tp[1] ? `<div class="title-sub">「${tp[1]}</div>` : '') +
+    `<div class="award">${main.award}<br>${main.size}　${main.materials}</div>`;
 
   // statement（冒頭2段落＋残りは「全文を読む」）
   const paras = main.caption.split('\n').filter(t=>t.trim());
