@@ -37,6 +37,8 @@ ld = {"@context": "https://schema.org", "@type": "Person",
       "description": "日本画家。水干絵具・岩絵具・金泥による心象画。"}
 s = replace_between(s, '<!--JSONLD:START-->', '<!--JSONLD:END-->',
                     '<script type="application/ld+json">' + json.dumps(ld, ensure_ascii=False) + '</script>')
+# ALL WORKSボタンの点数も静的に正しく焼き込む（JS無効環境・クローラー向け）
+s = re.sub(r'(id="all-count">)\d+', r'\g<1>' + str(len(works)), s)
 open('index.html', 'w', encoding='utf-8').write(s)
 
 # ---- works.html ----
